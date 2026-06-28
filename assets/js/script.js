@@ -163,6 +163,8 @@ const poemText = document.getElementById("poemText");
 const canvas = document.getElementById("atmosphere");
 const ctx = canvas.getContext("2d");
 
+music.loop = true;
+
 let poem = parsePoem(FALLBACK_POEM);
 let stages = [];
 let currentStageIndex = 0;
@@ -178,6 +180,7 @@ let userVolume = 0.75;
 let volumeFadeId = 0;
 let audioObjectUrl = "";
 let particles = [];
+let rainDrops = [];
 let dpr = 1;
 let activeMood = "arrival";
 
@@ -490,7 +493,6 @@ function pauseExperience() {
   if (!isPaused) {
     isPaused = true;
     pausedAt = performance.now();
-    music.pause();
     pauseButton.textContent = "Lanjut";
     document.body.classList.add("is-paused");
     cancelAnimationFrame(rafId);
@@ -499,7 +501,6 @@ function pauseExperience() {
 
   isPaused = false;
   stageStartedAt += performance.now() - pausedAt;
-  music.play().catch(() => undefined);
   pauseButton.textContent = "Jeda";
   document.body.classList.remove("is-paused");
   rafId = requestAnimationFrame(tick);
@@ -583,17 +584,18 @@ function resizeCanvas() {
   canvas.style.height = `${window.innerHeight}px`;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   seedParticles();
+  seedRain();
 }
 
 function seedParticles() {
-  const amount = window.innerWidth < 520 ? 58 : 92;
+  const amount = window.innerWidth < 520 ? 28 : 44;
   particles = Array.from({ length: amount }, () => ({
     x: Math.random() * window.innerWidth,
     y: Math.random() * window.innerHeight,
-    size: 0.5 + Math.random() * 1.4,
-    speedX: -0.08 + Math.random() * 0.16,
-    speedY: -0.05 + Math.random() * 0.12,
-    alpha: 0.1 + Math.random() * 0.34,
+    size: 0.4 + Math.random() * 1,
+    speedX: -0.025 + Math.random() * 0.05,
+    speedY: -0.018 + Math.random() * 0.04,
+    alpha: 0.06 + Math.random() * 0.16,
     drift: Math.random() * Math.PI * 2
   }));
 }
@@ -619,83 +621,76 @@ function paletteForMood() {
   return palettes[activeMood] || palettes.arrival;
 }
 
-function drawThreads(time) {
-  if (!["thread", "wound", "question", "split"].includes(activeMood)) {
-    return;
-  }
+function makeRainDrop(initialY = Math.random() * window.innerHeight) {
+  const depth = Math.random();
+  const near = depth * depth;
 
-  const [primary] = paletteForMood();
-  ctx.save();
-  ctx.globalAlpha = activeMood === "question" ? 0.34 : 0.22;
-  ctx.strokeStyle = `rgba(${primary}, 0.8)`;
-  ctx.lineWidth = 1;
-
-  for (let i = 0; i < 3; i += 1) {
-    const y = window.innerHeight * (0.32 + i * 0.14) + Math.sin(time * 0.001 + i) * 10;
-    ctx.beginPath();
-    ctx.moveTo(-40, y);
-
-    for (let x = -40; x <= window.innerWidth + 40; x += 80) {
-      const wave = Math.sin(time * 0.0013 + x * 0.018 + i) * (8 + i * 4);
-      ctx.quadraticCurveTo(x + 40, y + wave, x + 80, y - wave * 0.3);
-    }
-
-    ctx.stroke();
-  }
-
-  ctx.restore();
+  return {
+    x: Math.random() * (window.innerWidth + 180) - 90,
+    y: initialY,
+    length: 10 + near * 30 + Math.random() * 12,
+    speed: 3.4 + near * 9 + Math.random() * 3.5,
+    wind: -1.35 - near * 2.9,
+    width: 0.45 + near * 0.9,
+    alpha: 0.045 + near * 0.18,
+    shimmer: Math.random() * Math.PI * 2,
+    shimmerSpeed: 0.006 + Math.random() * 0.012
+  };
 }
 
-function drawCracks(time) {
-  if (!["abyss", "fall", "question"].includes(activeMood)) {
-    return;
+function seedRain() {
+  const amount = window.innerWidth < 520 ? 88 : 145;
+  rainDrops = Array.from({ length: amount }, () => makeRainDrop());
+}
+
+function resetRainDrop(drop) {
+  Object.assign(drop, makeRainDrop(-40 - Math.random() * window.innerHeight * 0.35));
+}
+
+function rainIntensity() {
+  if (["question", "abyss", "fall", "sorry"].includes(activeMood)) {
+    return 1.08;
   }
 
-  const [primary] = paletteForMood();
-  ctx.save();
-  ctx.globalAlpha = activeMood === "question" ? 0.28 : 0.18;
-  ctx.strokeStyle = `rgba(${primary}, 0.8)`;
-  ctx.lineWidth = 1;
-
-  const centerX = window.innerWidth * 0.5;
-  const top = window.innerHeight * 0.18;
-  const height = window.innerHeight * 0.62;
-
-  for (let i = 0; i < 5; i += 1) {
-    const offset = (i - 2) * 18;
-    ctx.beginPath();
-    ctx.moveTo(centerX + offset, top);
-
-    for (let y = top; y < top + height; y += 58) {
-      const x = centerX + offset + Math.sin(time * 0.001 + y * 0.04 + i) * (14 + i * 2);
-      ctx.lineTo(x, y);
-    }
-
-    ctx.stroke();
+  if (["release", "prayer"].includes(activeMood)) {
+    return 0.72;
   }
 
-  ctx.restore();
+  return 0.86;
 }
 
 function drawRain(time) {
-  if (!["rain", "sorry", "release"].includes(activeMood)) {
-    return;
-  }
+  const intensity = rainIntensity();
 
-  const [primary] = paletteForMood();
   ctx.save();
-  ctx.globalAlpha = activeMood === "release" ? 0.08 : 0.18;
-  ctx.strokeStyle = `rgba(${primary}, 0.75)`;
-  ctx.lineWidth = 1;
+  ctx.lineCap = "round";
 
-  const spacing = window.innerWidth < 520 ? 34 : 46;
-  for (let x = -20; x < window.innerWidth + 20; x += spacing) {
-    const y = ((time * 0.045 + x * 1.7) % (window.innerHeight + 120)) - 80;
+  rainDrops.forEach((drop) => {
+    drop.shimmer += drop.shimmerSpeed;
+    drop.x += drop.wind;
+    drop.y += drop.speed;
+
+    if (drop.y > window.innerHeight + drop.length || drop.x < -150) {
+      resetRainDrop(drop);
+    }
+
+    const sway = Math.sin(drop.shimmer + time * 0.0005) * 0.85;
+    const endX = drop.x + drop.wind * 2.8 + sway;
+    const endY = drop.y + drop.length;
+    const alpha = Math.min(0.32, drop.alpha * intensity);
+    const gradient = ctx.createLinearGradient(drop.x, drop.y, endX, endY);
+
+    gradient.addColorStop(0, "rgba(226, 232, 236, 0)");
+    gradient.addColorStop(0.38, `rgba(226, 232, 236, ${alpha * 0.5})`);
+    gradient.addColorStop(1, `rgba(226, 232, 236, ${alpha})`);
+
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = drop.width;
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x - 8, y + 42);
+    ctx.moveTo(drop.x, drop.y);
+    ctx.lineTo(endX, endY);
     ctx.stroke();
-  }
+  });
 
   ctx.restore();
 }
@@ -721,8 +716,6 @@ function animateCanvas(time) {
     ctx.fill();
   });
 
-  drawThreads(time);
-  drawCracks(time);
   drawRain(time);
   canvasRafId = requestAnimationFrame(animateCanvas);
 }

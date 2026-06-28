@@ -52,11 +52,11 @@ body::after {
 
 body::before {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 4.25rem 4.25rem;
-  mask-image: radial-gradient(circle at center, black, transparent 74%);
-  opacity: 0.18;
+    radial-gradient(circle at 24% 18%, rgba(244, 239, 228, 0.055), transparent 0.12rem),
+    radial-gradient(circle at 78% 36%, rgba(217, 184, 117, 0.045), transparent 0.1rem),
+    radial-gradient(circle at 44% 82%, rgba(244, 239, 228, 0.04), transparent 0.1rem);
+  background-size: 18rem 20rem, 22rem 18rem, 20rem 24rem;
+  opacity: 0.35;
 }
 
 body::after {
@@ -242,39 +242,6 @@ body.has-started .loader {
   border-radius: 50%;
   background: #050506;
   content: "";
-}
-
-.thread {
-  position: absolute;
-  left: -8vw;
-  width: 116vw;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(217, 184, 117, 0.18), rgba(244, 239, 228, 0.65), rgba(109, 29, 39, 0.22), transparent);
-  opacity: 0.2;
-  transform-origin: center;
-  transition: opacity 900ms ease, transform 1200ms ease;
-}
-
-.thread--upper {
-  top: 22%;
-  transform: rotate(-7deg);
-}
-
-.thread--lower {
-  bottom: 20%;
-  transform: rotate(8deg);
-}
-
-.tear {
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  width: 1px;
-  height: 0;
-  background: linear-gradient(180deg, rgba(244, 239, 228, 0), rgba(244, 239, 228, 0.45), rgba(109, 29, 39, 0));
-  opacity: 0;
-  transform: translateX(-50%);
-  transition: height 1400ms ease, opacity 900ms ease;
 }
 
 .experience {
@@ -485,21 +452,6 @@ body.has-started {
   background: linear-gradient(90deg, var(--blood), var(--ember), var(--gold), var(--ink));
 }
 
-body[data-mood="thread"] .thread,
-body[data-mood="wound"] .thread {
-  opacity: 0.56;
-}
-
-body[data-mood="wound"] .thread--upper,
-body[data-mood="question"] .thread--upper {
-  transform: rotate(-13deg) translateY(1.3rem);
-}
-
-body[data-mood="wound"] .thread--lower,
-body[data-mood="question"] .thread--lower {
-  transform: rotate(13deg) translateY(-1.3rem);
-}
-
 body[data-mood="question"] .poem-stage {
   animation: doubt 4.2s ease-in-out infinite;
   filter: contrast(1.08);
@@ -510,12 +462,6 @@ body[data-mood="fall"] .lunar-mark {
   opacity: 0.1;
   filter: grayscale(0.35);
   transform: translateX(0.75rem) scale(0.94);
-}
-
-body[data-mood="rain"] .tear,
-body[data-mood="sorry"] .tear {
-  height: 58%;
-  opacity: 0.5;
 }
 
 body[data-mood="release"] .lunar-mark,
