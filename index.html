@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050506">
+    <title>Menjadi Lukamu</title>
+    <link rel="preload" href="assets/audio/musicBackground.mp3" as="audio" type="audio/mpeg">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <audio id="music" preload="auto" loop></audio>
+
+    <section class="loader" id="loader" aria-live="polite">
+      <div class="loader__thread" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p class="loader__kicker">Menjadi Lukamu</p>
+      <h1 class="loader__title">Memuat ruang sunyi</h1>
+      <div class="loader__bar" aria-hidden="true">
+        <span id="loadingFill"></span>
+      </div>
+      <p class="loader__status" id="loadingStatus">Membuka puisi...</p>
+      <button class="start-button" id="startButton" type="button" hidden disabled>
+        Mulai
+      </button>
+    </section>
+
+    <canvas id="atmosphere" aria-hidden="true"></canvas>
+
+    <div class="visuals" aria-hidden="true">
+      <div class="lunar-mark"></div>
+      <div class="thread thread--upper"></div>
+      <div class="thread thread--lower"></div>
+      <div class="tear"></div>
+    </div>
+
+    <main class="experience" id="experience" aria-live="polite">
+      <section class="poem-stage" id="poemStage">
+        <p class="poem-count" id="poemCount"></p>
+        <h2 class="poem-title" id="poemTitle"></h2>
+        <div class="poem-text" id="poemText"></div>
+      </section>
+    </main>
+
+    <footer class="controls" id="controls" hidden>
+      <div class="timeline" aria-hidden="true">
+        <span id="timelineFill"></span>
+      </div>
+      <div class="volume-control">
+        <label for="volumeSlider">Volume</label>
+        <input id="volumeSlider" type="range" min="0" max="100" step="1" value="75" aria-label="Volume musik">
+        <span id="volumeValue">75%</span>
+      </div>
+      <button id="pauseButton" type="button">Jeda</button>
+      <button id="soundButton" type="button">Suara</button>
+      <button id="restartButton" type="button">Ulang</button>
+    </footer>
+
+    <noscript>
+      Halaman ini membutuhkan JavaScript agar animasi puisi dan musik dapat berjalan.
+    </noscript>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
