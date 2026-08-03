@@ -30,7 +30,7 @@ sebagai saksi atas segala dosaku.
 
 Biarkan para malaikat
 yang mengiringi perjalanan terakhirku,
-bukan manusia yang baru mengingat
-kusetelah aku tiada.
+bukan manusia, yang baru mengingatku
+setelah aku tiada.
 
 ~ vier - 23.00 | 28 Juli 2026
