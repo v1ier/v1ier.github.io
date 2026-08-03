@@ -1,0 +1,18 @@
+{
+  "poems": [
+    {
+      "slug": "jarak-yang-tak-pernah-kutempuh",
+      "title": "Jarak yang Tak Pernah Kutempuh",
+      "date": "02 Agustus 2026",
+      "excerpt": "Ada seorang wanita yang menyimpan namaku di setiap doa yang ia bisikkan sebelum tidur, sementara aku menyimpan nama lain di tempat yang bahkan doa tak sanggup menjangkau.",
+      "file": "content/poems/jarak-yang-tak-pernah-kutempuh.md"
+    },
+    {
+      "slug": "menjadi-lukamu",
+      "title": "Menjadi Lukamu",
+      "date": "29 Juni 2026",
+      "excerpt": "Hei, untukmu yang jauh di sana, seseorang yang datang seperti cahaya kecil ke dalam ruangan yang sudah lama kupikir tidak lagi memiliki pintu.",
+      "file": "content/poems/menjadi-lukamu.md"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050506">
+    <title>Puisi — vier</title>
+    <meta name="description" content="Kumpulan puisi yang ditulis dari ruang sunyi.">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body class="home-page">
+    <canvas id="atmosphere" aria-hidden="true"></canvas>
+
+    <div class="visuals" aria-hidden="true">
+      <div class="lunar-mark"></div>
+    </div>
+
+    <main class="home">
+      <header class="home__header">
+        <p class="home__kicker">Puisi</p>
+        <h1 class="home__title">vier</h1>
+        <p class="home__subtitle">Kumpulan puisi yang ditulis dari ruang sunyi. Pilih satu untuk mulai membaca.</p>
+      </header>
+
+      <ul class="poem-thread" id="poemThread" aria-label="Daftar puisi">
+        <li class="poem-entry poem-entry--ghost" aria-hidden="true">
+          <span class="poem-entry__knot"></span>
+          <span class="poem-entry__body">
+            <span class="poem-entry__title">Memuat...</span>
+          </span>
+        </li>
+      </ul>
+    </main>
+
+    <footer class="home__footer">
+      <p>vier</p>
+    </footer>
+
+    <script src="assets/js/home.js"></script>
+  </body>
+</html>
