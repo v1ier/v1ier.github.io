@@ -5,11 +5,13 @@ apakah itu yang disebut kemunafikan?
 
 Mereka tak peduli
 selama kau masih bernapas.
-Namun saat tubuhmu terbujurdi balik sunyinya peti,
-mereka datang membawa bunga,
+Namun saat tubuhmu terbujur
+di balik sunyinya peti,
 
+mereka datang membawa bunga,
 menangis seolah kehilanganmu
 adalah luka paling dalam.
+
 Padahal semua itu
 hanya berlangsung sesaat.
 
@@ -28,8 +30,7 @@ sebagai saksi atas segala dosaku.
 
 Biarkan para malaikat
 yang mengiringi perjalanan terakhirku,
-bukan manusia
-yang baru mengingat
+bukan manusia yang baru mengingat
 kusetelah aku tiada.
 
 ~ vier - 23.00 | 28 Juli 2026
