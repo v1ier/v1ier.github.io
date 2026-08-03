@@ -48,8 +48,8 @@ const GHOST_ENTRY = `
   <li class="poem-entry poem-entry--ghost">
     <span class="poem-entry__knot" aria-hidden="true"></span>
     <span class="poem-entry__body">
-      <span class="poem-entry__title">Puisi berikutnya</span>
-      <span class="poem-entry__excerpt">Masih ditulis, masih dirasakan.</span>
+      <span class="poem-entry__title">Terlalu Sunyi</span>
+      <span class="poem-entry__excerpt">Tak terpikirkan...</span>
     </span>
   </li>
 `;
