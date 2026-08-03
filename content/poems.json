@@ -1,6 +1,13 @@
 {
   "poems": [
     {
+      "slug": "horns-and-wings",
+      "title": "Horns and Wings",
+      "date": "03 Agustus 2026",
+      "excerpt": " You came wrapped in morning light, I was born inside the night, You breathe hope into the sky, I wear shadows in my eyes",
+      "file": "content/poems/horns-and-wings.md"
+    },
+    {
       "slug": "jarak-yang-tak-pernah-kutempuh",
       "title": "Jarak yang Tak Pernah Kutempuh",
       "date": "02 Agustus 2026",
