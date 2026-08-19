@@ -1,10 +1,17 @@
 {
   "poems": [
     {
+      "slug": "di-antara-tatapan-dan-ketidakmungkinan",
+      "title": "Di Antara Tatapan dan Ketidakmungkinan",
+      "date": "20 Agustus 2026",
+      "excerpt": "Kita pernah berpapasan beberapa kali namun tak pernah ada yang tinggal di antara kita. Tak ada debar, tak ada rasa ingin tahu, hanya dua manusia yang kebetulan berbagi jalan lalu kembali menjadi asing.",
+      "file": "content/poems/di-antara-tatapan-dan-ketidakmungkinan.md"
+    },
+    {
       "slug": "horns-and-wings",
       "title": "Horns and Wings",
       "date": "03 Agustus 2026",
-      "excerpt": " You came wrapped in morning light, I was born inside the night, You breathe hope into the sky, I wear shadows in my eyes",
+      "excerpt": "You came wrapped in morning light, I was born inside the night, You breathe hope into the sky, I wear shadows in my eyes",
       "file": "content/poems/horns-and-wings.md"
     },
     {
